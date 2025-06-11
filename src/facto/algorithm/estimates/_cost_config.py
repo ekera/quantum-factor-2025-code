@@ -17,7 +17,6 @@ def total_costs(conf: ExecutionConfig) -> dict[str, collections.Counter[CostKey]
 
 @dataclasses.dataclass(frozen=True)
 class CostConfig:
-    s: int
     conf: ExecutionConfig
     toffolis: int
     keep_rate: float
