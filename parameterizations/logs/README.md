@@ -1,7 +1,8 @@
 # Log files from runs with Qunundrum
 This directory contains directories which in turn contain log files from runs with [Qunundrum](https://github.com/ekera/qunundrum).
 
-More specifically, for various parameterizations, the expected number of runs required to reach a $99\%$ success probability in the classical lattice-based post-processing is estimated as a function of the tradeoff factor $s$. This when solving directly without enumerating a large number of vectors in the lattice.
+More specifically, for various parameterizations, the expected number of runs required to reach a 99% success probability in the classical lattice-based post-processing is estimated as a function of the tradeoff factor $s$.
+This when solving directly without enumerating a large number of vectors in the lattice.
 
 The estimates are based on the Gaussian heuristic.
 A set of validating run, in which sampled output sets will actually be solved in practice, are planned.
