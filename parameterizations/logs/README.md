@@ -27,4 +27,4 @@ For each modulus length and problem type, estimates are provided for $s = 2, 3, 
 
    The parameter $\varsigma$ is selected as in Tab. 5.6 on p. 82 of [[E24t]](https://kth.diva-portal.org/smash/get/diva2:1902626/FULLTEXT01.pdf) with $B_q = 0.991$.
 
-   Note that these estimates are based on heuristics from [[E19p]](https://doi.org/10.48550/arXiv.1905.09084) that may not be good for large $s$.
+   Note that the estimates in these log files are based on heuristics from [[E19p]](https://doi.org/10.48550/arXiv.1905.09084) that may not be good for large $s$.
