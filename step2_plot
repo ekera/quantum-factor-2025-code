@@ -35,19 +35,53 @@ PYTHONPATH=src python \
     --mask_proportion 0.1 \
     &
 
+
 PYTHONPATH=src python \
     src/facto/algorithm/estimates/main2_generate_pareto_plot.py \
-    --out assets/gen/logical-pareto-cost-curves.png \
-    --csv_path out/cost_variations.csv \
+    --out assets/gen/rsa-logical-pareto-cost-curves.png \
+    --csv_path out/rsa-cost-variations.csv \
+    --title "RSA IFP" \
+    &
+
+PYTHONPATH=src python \
+    src/facto/algorithm/estimates/main2_generate_pareto_plot.py \
+    --out assets/gen/ff-dh-short-logical-pareto-cost-curves.png \
+    --csv_path out/ff-dh-short-cost-variations.csv \
+    --title "Short DLP in safe-prime groups" \
+    &
+
+PYTHONPATH=src python \
+    src/facto/algorithm/estimates/main2_generate_pareto_plot.py \
+    --out assets/gen/ff-dh-schnorr-logical-pareto-cost-curves.png \
+    --csv_path out/ff-dh-schnorr-cost-variations.csv \
+    --title "DLP in Schnorr groups of known order" \
+    &
+
+
+PYTHONPATH=src python \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/rsa-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/rsa-logical-cost-table.tex \
     &
 
 PYTHONPATH=src python \
     src/facto/algorithm/estimates/main5_generate_cost_table.py \
-    --csv_path out/cost_variations.csv \
+    --csv_path out/ff-dh-short-cost-variations.csv \
     --toffoli_power 1 \
     --qubit_power 3 \
-    --out assets/gen/logical-cost-table.tex \
+    --out assets/gen/ff-dh-short-logical-cost-table.tex \
     &
+
+PYTHONPATH=src python \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/ff-dh-schnorr-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/ff-dh-schnorr-logical-cost-table.tex \
+    &
+
 
 PYTHONPATH=src python src/facto/algorithm/sim/main2_plot_masked_success_rates.py \
     --in assets/masked_success_stats.csv \
