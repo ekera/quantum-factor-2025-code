@@ -2,7 +2,7 @@
 
 set -e
 
-mkdir assets/gen -p
+mkdir -p assets/gen
 cp \
     src/facto/algorithm/_simple_example_code.py \
     assets/gen/simple_example_code.py
