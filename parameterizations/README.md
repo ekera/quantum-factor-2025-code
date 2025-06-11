@@ -3,12 +3,12 @@ This directory contains sets of algorithm parameterizations on CSV format for se
 More specifically, the parameterizations are for:
 
 - The RSA IFP with
-   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E23p]](https://doi.org/10.48550/arXiv.2309.01754) for $s \ge 2$, and 
-   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E20]](https://doi.org/10.1007/s10623-020-00783-2) for $s \approx 1$.
+   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E20]](https://doi.org/10.1007/s10623-020-00783-2) for $s \ge 2$, and 
+   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E23p]](https://doi.org/10.48550/arXiv.2309.01754) for $s \approx 1$.
 
 - The short DLP in safe-prime groups with
-   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E23p]](https://doi.org/10.48550/arXiv.2309.01754) for $s \ge 2$, and 
-   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E20]](https://doi.org/10.1007/s10623-020-00783-2) for $s \approx 1$.
+   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E20]](https://doi.org/10.1007/s10623-020-00783-2) for $s \ge 2$, and 
+   - Ekerå–Håstad's algorithm [[EH17]](https://doi.org/10.1007/978-3-319-59879-6_20) with the post-processing in [[E23p]](https://doi.org/10.48550/arXiv.2309.01754) for $s \approx 1$.
 
 - The DLP in Schnorr groups of known order with
    - Shor's algorithm [[Shor94]](https://doi.org/10.1109/SFCS.1994.365700) [[Shor97]](https://doi.org/10.1137/S0097539795293172) as modified by Ekerå in [[E19p]](https://doi.org/10.48550/arXiv.1905.09084) and with the post-processing in [[E19p]](https://doi.org/10.48550/arXiv.1905.09084).
