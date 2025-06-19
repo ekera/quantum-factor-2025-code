@@ -2,7 +2,10 @@
 
 set -e
 
-PYTHONPATH=src python \
+PYTHON=python
+
+
+PYTHONPATH=src $PYTHON \
     src/facto/algorithm/sim/main1_sample_masked_success_rates.py \
     --mask_proportions 0 0.01 0.1 0.5 0.9 \
     --max_shots 200_000 \
@@ -10,17 +13,17 @@ PYTHONPATH=src python \
     --save_resume_path assets/masked_success_stats.csv
 
 
-PYTHONPATH=src python \
+PYTHONPATH=src $PYTHON \
     src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
     --params_csv_path parameterizations/rsa-params.csv \
     --out_csv_path out/rsa-cost-variations.csv
 
-PYTHONPATH=src python \
+PYTHONPATH=src $PYTHON \
     src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
     --params_csv_path parameterizations/ff-dh-short-params.csv \
     --out_csv_path out/ff-dh-short-cost-variations.csv
 
-PYTHONPATH=src python \
+PYTHONPATH=src $PYTHON \
     src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
     --params_csv_path parameterizations/ff-dh-schnorr-params.csv \
     --out_csv_path out/ff-dh-schnorr-cost-variations.csv
