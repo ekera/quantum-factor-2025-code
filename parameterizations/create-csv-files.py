@@ -652,12 +652,13 @@ def tabulate_ff_dh_schnorr(csv_prefix):
         csv_writer.writerow({
           "modulus_bitlength": modulus_length,
           "num_input_qubits": num_input_qubits,
-          "num_shots": 1,
+          "num_shots": n,
           "pp_success_probability": 0.99,
           "details": json.dumps({
             "z": z,
             "m": m,
             "sigma": sigma,
+            "s": s,
             "l": l,
             "algorithms": ["E19p"]
           })
