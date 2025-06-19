@@ -83,7 +83,8 @@ PYTHONPATH=src python \
     &
 
 
-PYTHONPATH=src python src/facto/algorithm/sim/main2_plot_masked_success_rates.py \
+PYTHONPATH=src python \
+    src/facto/algorithm/sim/main2_plot_masked_success_rates.py \
     --in assets/masked_success_stats.csv \
     --out assets/gen/masked_success_rate.png \
     --xmax 10_000 \
