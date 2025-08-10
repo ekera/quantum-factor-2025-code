@@ -13,6 +13,41 @@ PYTHONPATH=src $PYTHON \
     --save_resume_path assets/masked_success_stats.csv
 
 
+# Single run.
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
+    --params_csv_path parameterizations/rsa-single-run-params.csv \
+    --out_csv_path out/rsa-single-run-cost-variations.csv
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
+    --params_csv_path parameterizations/ff-dh-short-single-run-params.csv \
+    --out_csv_path out/ff-dh-short-single-run-cost-variations.csv
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
+    --params_csv_path parameterizations/ff-dh-schnorr-single-run-params.csv \
+    --out_csv_path out/ff-dh-schnorr-single-run-cost-variations.csv
+
+
+# Large tradeoff factor s.
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
+    --params_csv_path parameterizations/rsa-large-s-params.csv \
+    --out_csv_path out/rsa-large-s-cost-variations.csv
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
+    --params_csv_path parameterizations/ff-dh-short-large-s-params.csv \
+    --out_csv_path out/ff-dh-short-large-s-cost-variations.csv
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
+    --params_csv_path parameterizations/ff-dh-schnorr-large-s-params.csv \
+    --out_csv_path out/ff-dh-schnorr-large-s-cost-variations.csv
+
+
+# All combinations.
 PYTHONPATH=src $PYTHON \
     src/facto/algorithm/estimates/main1_generate_cost_table_data.py \
     --params_csv_path parameterizations/rsa-params.csv \

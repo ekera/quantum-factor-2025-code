@@ -62,6 +62,59 @@ PYTHONPATH=src $PYTHON \
     &
 
 
+# Single run.
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/rsa-single-run-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/rsa-logical-single-run-cost-table.tex \
+    &
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/ff-dh-short-single-run-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/ff-dh-short-logical-single-run-cost-table.tex \
+    &
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/ff-dh-schnorr-single-run-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/ff-dh-schnorr-logical-single-run-cost-table.tex \
+    &
+
+
+# Large tradeoff factor s.
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/rsa-large-s-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/rsa-logical-large-s-cost-table.tex \
+    &
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/ff-dh-short-large-s-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/ff-dh-short-logical-large-s-cost-table.tex \
+    &
+
+PYTHONPATH=src $PYTHON \
+    src/facto/algorithm/estimates/main5_generate_cost_table.py \
+    --csv_path out/ff-dh-schnorr-large-s-cost-variations.csv \
+    --toffoli_power 1 \
+    --qubit_power 3 \
+    --out assets/gen/ff-dh-schnorr-logical-large-s-cost-table.tex \
+    &
+
+
+# All combinations.
 PYTHONPATH=src $PYTHON \
     src/facto/algorithm/estimates/main5_generate_cost_table.py \
     --csv_path out/rsa-cost-variations.csv \
@@ -85,6 +138,8 @@ PYTHONPATH=src $PYTHON \
     --qubit_power 3 \
     --out assets/gen/ff-dh-schnorr-logical-cost-table.tex \
     &
+
+
 
 
 PYTHONPATH=src $PYTHON \
