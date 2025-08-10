@@ -13,17 +13,17 @@ def save_cost_figure(*, csv_path: str | pathlib.Path, out_path: str | pathlib.Pa
     buckets = read_buckets(csv_path)
 
     # Comparisons with other estimates.
-    ge21_costs = None;
-    cfs24_costs = None;
+    ge21_costs = None
+    cfs24_costs = None
 
     def ge21_cost(n, n_e):
         return ([0.2 * n_e * (n ** 2) + 0.0003 * n_e * (n ** 2) * math.log2(n)],
-                [3 * n + math.ceil(0.002 * n * math.log2(n))]);
+                [3 * n + math.ceil(0.002 * n * math.log2(n))])
 
     def ge21_cost_rsa(n):
-        m = n / 2 - 1;
-        l = m - 20;
-        return ge21_cost(n, n_e = m + 2 * l);
+        m = n / 2 - 1
+        l = m - 20
+        return ge21_cost(n, n_e = m + 2 * l)
 
     nist_model = {
       512:   56,
