@@ -712,6 +712,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
           "z": z,
           "m": m,
           "sigma": sigma,
+          "s": 1,
           "l": l,
           "algorithms": ["E19p"]
         })
@@ -764,6 +765,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
           "z": z,
           "m": m,
           "sigma": sigma,
+          "s": 1,
           "l": l,
           "algorithms": ["E19p"]
         })
