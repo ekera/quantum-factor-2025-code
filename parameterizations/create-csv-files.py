@@ -254,7 +254,7 @@ ff_dh_schnorr_dlp_params = [
 
 rsa_params = [
     # modulus length, [s, runs] combinations for >= 99% success probability
-    [ 512, # => 255-bit logarithm
+    [ 512,  56, # => 255-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -267,7 +267,7 @@ rsa_params = [
          [11, 17],
          [12, 20],
          [13, 23]]],
-    [ 768, # => 383-bit logarithm
+    [ 768,  72, # => 383-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -283,7 +283,7 @@ rsa_params = [
          [14, 20],
          [15, 23],
          [16, 26]]],
-    [1024, # => 511-bit logarithm
+    [1024,  80, # => 511-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -302,7 +302,7 @@ rsa_params = [
          [17, 24],
          [18, 26],
          [19, 29]]],
-    [1536, # => 767-bit logarithm
+    [1536,  96, # => 767-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -326,7 +326,7 @@ rsa_params = [
          [22, 30],
          [23, 31],
          [24, 34]]],
-    [2048, # => 1023-bit logarithm
+    [2048, 112, # => 1023-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -355,7 +355,7 @@ rsa_params = [
          [27, 36],
          [28, 37],
          [29, 39]]],
-    [3072, # => 1535-bit logarithm
+    [3072, 128, # => 1535-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -390,7 +390,7 @@ rsa_params = [
          [33, 41],
          [34, 42],
          [35, 45]]],
-    [4096, # => 2047-bit logarithm
+    [4096, 152, # => 2047-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -431,7 +431,7 @@ rsa_params = [
          [39, 47],
          [40, 48],
          [41, 51]]],
-    [6144, # => 3071-bit logarithm
+    [6144, 176, # => 3071-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -484,7 +484,7 @@ rsa_params = [
          [51, 60],
          [52, 61],
          [53, 64]]],
-    [8192, # => 4091-bit logarithm
+    [8192, 200, # => 4091-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -675,7 +675,7 @@ def tabulate_rsa(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, options] in rsa_params:
+    for [modulus_length, z, options] in rsa_params:
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
       m = modulus_length // 2 - 1
@@ -692,6 +692,7 @@ def tabulate_rsa(csv_prefix):
           "num_shots": 1,
           "pp_success_probability": pp_success_probability,
           "details": json.dumps({
+            "z": z,
             "m": m,
             "delta": delta,
             "l": l,
@@ -713,6 +714,7 @@ def tabulate_rsa(csv_prefix):
           "num_shots": n,
           "pp_success_probability": 0.99,
           "details": json.dumps({
+            "z": z,
             "m": m,
             "s": s,
             "l": l,
