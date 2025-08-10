@@ -558,6 +558,8 @@ rsa_single_options = [
 
 
 def tabulate_ff_dh_short(csv_prefix):
+
+  # All combinations.
   with open(csv_prefix + "-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
@@ -612,7 +614,78 @@ def tabulate_ff_dh_short(csv_prefix):
           })
         })
 
+  # Single run.
+  with open(csv_prefix + "-single-run-params.csv", "w+") as file:
+    csv_writer = csv.DictWriter(file, fieldnames=[
+      "modulus_bitlength",
+      "num_input_qubits",
+      "num_shots",
+      "pp_success_probability",
+      "details"])
+    csv_writer.writeheader()
+
+    for [modulus_length, z, options] in ff_dh_short_dlp_params:
+      m = 2 * z
+
+      # Single run.
+      for [delta, pp_tau, pp_t, pp_success_probability, pp_complexity] in \
+        ff_dh_short_dlp_single_options:
+        l = m - delta
+        num_input_qubits = m + 2 * l
+
+        csv_writer.writerow({
+          "modulus_bitlength": modulus_length,
+          "num_input_qubits": num_input_qubits,
+          "num_shots": 1,
+          "pp_success_probability": pp_success_probability,
+          "details": json.dumps({
+            "z": z,
+            "m": m,
+            "delta": delta,
+            "l": l,
+            "pp_tau": pp_tau,
+            "pp_t": pp_t,
+            "pp_complexity": pp_complexity,
+            "algorithms": ["EH17", "E23p"]
+          })
+        })
+
+  # Large tradeoff factor s.
+  with open(csv_prefix + "-large-s-params.csv", "w+") as file:
+    csv_writer = csv.DictWriter(file, fieldnames=[
+      "modulus_bitlength",
+      "num_input_qubits",
+      "num_shots",
+      "pp_success_probability",
+      "details"])
+    csv_writer.writeheader()
+
+    for [modulus_length, z, options] in ff_dh_short_dlp_params:
+      m = 2 * z
+
+      [s, n] = max(options, key=lambda x: x[0])
+
+      l = ceil(m / s)
+      num_input_qubits = m + 2 * l
+
+      csv_writer.writerow({
+        "modulus_bitlength": modulus_length,
+        "num_input_qubits": num_input_qubits,
+        "num_shots": n,
+        "pp_success_probability": 0.99,
+        "details": json.dumps({
+          "z": z,
+          "m": m,
+          "s": s,
+          "l": l,
+          "algorithms": ["EH17", "E20"]
+        })
+      })
+
+
 def tabulate_ff_dh_schnorr(csv_prefix):
+
+  # All combinations.
   with open(csv_prefix + "-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
@@ -664,8 +737,75 @@ def tabulate_ff_dh_schnorr(csv_prefix):
           })
         })
 
+  # Single run.
+  with open(csv_prefix + "-single-run-params.csv", "w+") as file:
+    csv_writer = csv.DictWriter(file, fieldnames=[
+      "modulus_bitlength",
+      "num_input_qubits",
+      "num_shots",
+      "pp_success_probability",
+      "details"])
+    csv_writer.writeheader()
+
+    for [modulus_length, z, options] in ff_dh_schnorr_dlp_params:
+      m = 2 * z
+
+      # Single run.
+      l = m
+      sigma = 0
+      num_input_qubits = m + sigma + l
+
+      csv_writer.writerow({
+        "modulus_bitlength": modulus_length,
+        "num_input_qubits": num_input_qubits,
+        "num_shots": 1,
+        "pp_success_probability": 0.9999,
+        "details": json.dumps({
+          "z": z,
+          "m": m,
+          "sigma": sigma,
+          "l": l,
+          "algorithms": ["E19p"]
+        })
+      })
+
+  # Large tradeoff factor s.
+  with open(csv_prefix + "-large-s-params.csv", "w+") as file:
+    csv_writer = csv.DictWriter(file, fieldnames=[
+      "modulus_bitlength",
+      "num_input_qubits",
+      "num_shots",
+      "pp_success_probability",
+      "details"])
+    csv_writer.writeheader()
+
+    for [modulus_length, z, options] in ff_dh_schnorr_dlp_params:
+      m = 2 * z
+
+      [s, n, sigma] = max(options, key=lambda x: x[0])
+
+      l = ceil(m / s)
+      num_input_qubits = m + sigma + l
+
+      csv_writer.writerow({
+        "modulus_bitlength": modulus_length,
+        "num_input_qubits": num_input_qubits,
+        "num_shots": n,
+        "pp_success_probability": 0.99,
+        "details": json.dumps({
+          "z": z,
+          "m": m,
+          "sigma": sigma,
+          "s": s,
+          "l": l,
+          "algorithms": ["E19p"]
+        })
+      })
+
 
 def tabulate_rsa(csv_prefix):
+
+  # All combinations.
   with open(csv_prefix + "-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
@@ -721,6 +861,79 @@ def tabulate_rsa(csv_prefix):
             "algorithms": ["EH17", "E20"]
           })
         })
+
+  # Single run.
+  with open(csv_prefix + "-single-run-params.csv", "w+") as file:
+    csv_writer = csv.DictWriter(file, fieldnames=[
+      "modulus_bitlength",
+      "num_input_qubits",
+      "num_shots",
+      "pp_success_probability",
+      "details"])
+    csv_writer.writeheader()
+
+    for [modulus_length, z, options] in rsa_params:
+      if 0 != modulus_length % 2:
+        raise Exception("Error: The modulus length must be even.")
+      m = modulus_length // 2 - 1
+
+      # Single run.
+      for [delta, pp_tau, pp_t, pp_success_probability, pp_complexity] in \
+        rsa_single_options:
+        l = m - delta
+        num_input_qubits = m + 2 * l
+
+        csv_writer.writerow({
+          "modulus_bitlength": modulus_length,
+          "num_input_qubits": num_input_qubits,
+          "num_shots": 1,
+          "pp_success_probability": pp_success_probability,
+          "details": json.dumps({
+            "z": z,
+            "m": m,
+            "delta": delta,
+            "l": l,
+            "pp_tau": pp_tau,
+            "pp_t": pp_t,
+            "pp_complexity": pp_complexity,
+            "algorithms": ["EH17", "E23p"]
+          })
+        })
+
+  # Large tradeoff factor s.
+  with open(csv_prefix + "-large-s-params.csv", "w+") as file:
+    csv_writer = csv.DictWriter(file, fieldnames=[
+      "modulus_bitlength",
+      "num_input_qubits",
+      "num_shots",
+      "pp_success_probability",
+      "details"])
+    csv_writer.writeheader()
+
+    for [modulus_length, z, options] in rsa_params:
+      if 0 != modulus_length % 2:
+        raise Exception("Error: The modulus length must be even.")
+      m = modulus_length // 2 - 1
+
+      [s, n] = max(options, key=lambda x: x[0])
+
+      l = ceil(m / s)
+      num_input_qubits = m + 2 * l
+
+      csv_writer.writerow({
+        "modulus_bitlength": modulus_length,
+        "num_input_qubits": num_input_qubits,
+        "num_shots": n,
+        "pp_success_probability": 0.99,
+        "details": json.dumps({
+          "z": z,
+          "m": m,
+          "s": s,
+          "l": l,
+          "algorithms": ["EH17", "E20"]
+        })
+      })
+
 
 if __name__ == '__main__':
   tabulate_rsa("rsa")
