@@ -3,10 +3,22 @@ import json
 
 from math import ceil
 
+nist_model = {
+  512: 56,
+  768: 72,
+  1024: 80,
+  1536: 96,
+  2048: 112,
+  3072: 128,
+  4096: 152,
+  6144: 176,
+  8192: 200
+}
+
 ff_dh_short_dlp_params = [
-    # modulus length, strength level, [s, runs] combinations
+    # modulus length, [s, runs] combinations
     # (for >= 99% success probability)
-    [ 512,  56, # => 112-bit logarithm
+    [ 512, # => 112-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  6],
@@ -16,7 +28,7 @@ ff_dh_short_dlp_params = [
          [ 8, 22],
          [ 9, 28],
          [10, 37]]],
-    [ 768,  72, # => 144-bit logarithm
+    [ 768, # => 144-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  6],
@@ -26,7 +38,7 @@ ff_dh_short_dlp_params = [
          [ 8, 16],
          [ 9, 20],
          [10, 24]]],
-    [1024,  80, # => 160-bit logarithm
+    [1024, # => 160-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  6],
@@ -36,7 +48,7 @@ ff_dh_short_dlp_params = [
          [ 8, 14],
          [ 9, 18],
          [10, 23]]],
-    [1536,  96, # => 192-bit logarithm
+    [1536, # => 192-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -47,7 +59,7 @@ ff_dh_short_dlp_params = [
          [ 9, 15],
          [10, 17],
          [11, 21]]],
-    [2048, 112, # => 224-bit logarithm
+    [2048, # => 224-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -59,7 +71,7 @@ ff_dh_short_dlp_params = [
          [10, 16],
          [11, 19],
          [12, 22]]],
-    [3072, 128, # => 256-bit logarithm
+    [3072, # => 256-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -72,7 +84,7 @@ ff_dh_short_dlp_params = [
          [11, 17],
          [12, 20],
          [13, 23]]],
-    [4096, 152, # => 304-bit logarithm
+    [4096, # => 304-bit logarithm
         [[2,   3],
          [3,   4],
          [4,   5],
@@ -86,7 +98,7 @@ ff_dh_short_dlp_params = [
          [12, 18],
          [13, 20],
          [14, 24]]],
-    [6144, 176, # => 352-bit logarithm
+    [6144, # => 352-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -102,7 +114,7 @@ ff_dh_short_dlp_params = [
          [14, 21],
          [15, 24],
          [16, 27]]],
-    [8192, 200, # => 400-bit logarithm
+    [8192, # => 400-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -130,9 +142,9 @@ ff_dh_short_dlp_single_options = [
 ]
 
 ff_dh_schnorr_dlp_params = [
-    # modulus length, strength level, [s, runs, sigma] combinations
+    # modulus length, [s, runs, sigma] combinations
     # (for >= 99% success probability)
-    [ 512,  56, # => 112-bit logarithm
+    [ 512, # => 112-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  6,  9],
@@ -142,7 +154,7 @@ ff_dh_schnorr_dlp_params = [
          [ 8, 20, 10],
          [ 9, 23, 11],
          [10, 32, 11]]],
-    [ 768,  72, # => 144-bit logarithm
+    [ 768, # => 144-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  6,  9],
@@ -152,7 +164,7 @@ ff_dh_schnorr_dlp_params = [
          [ 8, 15, 10],
          [ 9, 19, 10],
          [10, 21, 11]]], # or [10, 23, 10]
-    [1024,  80, # => 160-bit logarithm
+    [1024, # => 160-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -162,7 +174,7 @@ ff_dh_schnorr_dlp_params = [
          [ 8, 14, 10],
          [ 9, 17, 10],
          [10, 22, 10]]],
-    [1536,  96, # => 192-bit logarithm
+    [1536, # => 192-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -174,7 +186,7 @@ ff_dh_schnorr_dlp_params = [
          [10, 17, 10],
          [11, 20, 10],
          [12, 25, 11]]],
-    [2048, 112, # => 224-bit logarithm
+    [2048, # => 224-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -186,7 +198,7 @@ ff_dh_schnorr_dlp_params = [
          [10, 15, 10],
          [11, 18, 10],
          [12, 22, 10]]],
-    [3072, 128, # => 256-bit logarithm
+    [3072, # => 256-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -200,7 +212,7 @@ ff_dh_schnorr_dlp_params = [
          [12, 19, 10],
          [13, 22, 11], # or [13, 23, 10]
          [14, 24, 11]]],
-    [4096, 152, # => 304-bit logarithm
+    [4096, # => 304-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -216,7 +228,7 @@ ff_dh_schnorr_dlp_params = [
          [14, 22, 11], # or [14, 23, 10]
          [15, 24, 11],
          [16, 29, 11]]],
-    [6144, 176, # => 352-bit logarithm
+    [6144, # => 352-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -232,7 +244,7 @@ ff_dh_schnorr_dlp_params = [
          [14, 21, 10],
          [15, 23, 11],
          [16, 26, 11]]],
-    [8192, 200, # => 400-bit logarithm
+    [8192, # => 400-bit logarithm
         [[ 2,  3,  8],
          [ 3,  4,  8],
          [ 4,  5,  8],
@@ -253,8 +265,8 @@ ff_dh_schnorr_dlp_params = [
 ]
 
 rsa_params = [
-    # modulus length, [s, runs] combinations for >= 99% success probability
-    [ 512,  56, # => 255-bit logarithm
+    # modulus length, [s, runs] combinations (for >= 99% success probability)
+    [ 512, # => 255-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -267,7 +279,7 @@ rsa_params = [
          [11, 17],
          [12, 20],
          [13, 23]]],
-    [ 768,  72, # => 383-bit logarithm
+    [ 768, # => 383-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -283,7 +295,7 @@ rsa_params = [
          [14, 20],
          [15, 23],
          [16, 26]]],
-    [1024,  80, # => 511-bit logarithm
+    [1024, # => 511-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -302,7 +314,7 @@ rsa_params = [
          [17, 24],
          [18, 26],
          [19, 29]]],
-    [1536,  96, # => 767-bit logarithm
+    [1536, # => 767-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -326,7 +338,7 @@ rsa_params = [
          [22, 30],
          [23, 31],
          [24, 34]]],
-    [2048, 112, # => 1023-bit logarithm
+    [2048, # => 1023-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -355,7 +367,7 @@ rsa_params = [
          [27, 36],
          [28, 37],
          [29, 39]]],
-    [3072, 128, # => 1535-bit logarithm
+    [3072, # => 1535-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -390,7 +402,7 @@ rsa_params = [
          [33, 41],
          [34, 42],
          [35, 45]]],
-    [4096, 152, # => 2047-bit logarithm
+    [4096, # => 2047-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -431,7 +443,7 @@ rsa_params = [
          [39, 47],
          [40, 48],
          [41, 51]]],
-    [6144, 176, # => 3071-bit logarithm
+    [6144, # => 3071-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -484,7 +496,7 @@ rsa_params = [
          [51, 60],
          [52, 61],
          [53, 64]]],
-    [8192, 200, # => 4091-bit logarithm
+    [8192, # => 4091-bit logarithm
         [[ 2,  3],
          [ 3,  4],
          [ 4,  5],
@@ -569,7 +581,8 @@ def tabulate_ff_dh_short(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in ff_dh_short_dlp_params:
+    for [modulus_length, options] in ff_dh_short_dlp_params:
+      z = nist_model[modulus_length]
       m = 2 * z
 
       # Single run.
@@ -624,7 +637,8 @@ def tabulate_ff_dh_short(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in ff_dh_short_dlp_params:
+    for [modulus_length, options] in ff_dh_short_dlp_params:
+      z = nist_model[modulus_length]
       m = 2 * z
 
       # Single run.
@@ -660,7 +674,8 @@ def tabulate_ff_dh_short(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in ff_dh_short_dlp_params:
+    for [modulus_length, options] in ff_dh_short_dlp_params:
+      z = nist_model[modulus_length]
       m = 2 * z
 
       [s, n] = max(options, key=lambda x: x[0])
@@ -695,7 +710,8 @@ def tabulate_ff_dh_schnorr(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in ff_dh_schnorr_dlp_params:
+    for [modulus_length, options] in ff_dh_schnorr_dlp_params:
+      z = nist_model[modulus_length]
       m = 2 * z
 
       # Single run.
@@ -748,7 +764,8 @@ def tabulate_ff_dh_schnorr(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in ff_dh_schnorr_dlp_params:
+    for [modulus_length, options] in ff_dh_schnorr_dlp_params:
+      z = nist_model[modulus_length]
       m = 2 * z
 
       # Single run.
@@ -781,7 +798,8 @@ def tabulate_ff_dh_schnorr(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in ff_dh_schnorr_dlp_params:
+    for [modulus_length, options] in ff_dh_schnorr_dlp_params:
+      z = nist_model[modulus_length]
       m = 2 * z
 
       [s, n, sigma] = max(options, key=lambda x: x[0])
@@ -817,7 +835,9 @@ def tabulate_rsa(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in rsa_params:
+    for [modulus_length, options] in rsa_params:
+      z = nist_model[modulus_length]
+
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
       m = modulus_length // 2 - 1
@@ -874,7 +894,9 @@ def tabulate_rsa(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in rsa_params:
+    for [modulus_length, options] in rsa_params:
+      z = nist_model[modulus_length]
+
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
       m = modulus_length // 2 - 1
@@ -912,7 +934,9 @@ def tabulate_rsa(csv_prefix):
       "details"])
     csv_writer.writeheader()
 
-    for [modulus_length, z, options] in rsa_params:
+    for [modulus_length, options] in rsa_params:
+      z = nist_model[modulus_length]
+
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
       m = modulus_length // 2 - 1
