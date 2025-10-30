@@ -578,10 +578,10 @@ rsa_single_options = [
 ]
 
 
-def tabulate_ff_dh_short(csv_prefix):
+def tabulate_ff_dh_short():
 
   # All combinations.
-  with open(csv_prefix + "-params.csv", "w+") as file:
+  with open("ff-dh-short-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -637,7 +637,7 @@ def tabulate_ff_dh_short(csv_prefix):
         })
 
   # Single run.
-  with open(csv_prefix + "-single-run-params.csv", "w+") as file:
+  with open("ff-dh-short-single-run-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -674,7 +674,7 @@ def tabulate_ff_dh_short(csv_prefix):
         })
 
   # Large tradeoff factor s.
-  with open(csv_prefix + "-large-s-params.csv", "w+") as file:
+  with open("ff-dh-short-large-s-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -707,10 +707,10 @@ def tabulate_ff_dh_short(csv_prefix):
       })
 
 
-def tabulate_ff_dh_schnorr(csv_prefix):
+def tabulate_ff_dh_schnorr():
 
   # All combinations.
-  with open(csv_prefix + "-params.csv", "w+") as file:
+  with open("ff-dh-schnorr-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -764,7 +764,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
         })
 
   # Single run.
-  with open(csv_prefix + "-single-run-params.csv", "w+") as file:
+  with open("ff-dh-schnorr-single-run-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -798,7 +798,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
       })
 
   # Large tradeoff factor s.
-  with open(csv_prefix + "-large-s-params.csv", "w+") as file:
+  with open("ff-dh-schnorr-large-s-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -832,10 +832,10 @@ def tabulate_ff_dh_schnorr(csv_prefix):
       })
 
 
-def tabulate_rsa(csv_prefix):
+def tabulate_rsa():
 
   # All combinations.
-  with open(csv_prefix + "-params.csv", "w+") as file:
+  with open("rsa-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -894,7 +894,7 @@ def tabulate_rsa(csv_prefix):
         })
 
   # Single run.
-  with open(csv_prefix + "-single-run-params.csv", "w+") as file:
+  with open("rsa-single-run-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -934,7 +934,7 @@ def tabulate_rsa(csv_prefix):
         })
 
   # Large tradeoff factor s.
-  with open(csv_prefix + "-large-s-params.csv", "w+") as file:
+  with open("rsa-large-s-params.csv", "w+") as file:
     csv_writer = csv.DictWriter(file, fieldnames=[
       "modulus_bitlength",
       "num_input_qubits",
@@ -971,6 +971,6 @@ def tabulate_rsa(csv_prefix):
 
 
 if __name__ == '__main__':
-  tabulate_rsa("rsa")
-  tabulate_ff_dh_short("ff-dh-short")
-  tabulate_ff_dh_schnorr("ff-dh-schnorr")
+  tabulate_rsa()
+  tabulate_ff_dh_short()
+  tabulate_ff_dh_schnorr()
