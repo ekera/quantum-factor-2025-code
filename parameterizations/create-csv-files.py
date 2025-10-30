@@ -15,6 +15,13 @@ nist_model = {
   8192: 200
 }
 
+def strength_level_for_modulus_length(modulus_length):
+  if modulus_length not in nist_model.keys():
+    raise Exception("Error: Unsupported modulus length.");
+
+  return nist_model[modulus_length];
+
+
 ff_dh_short_dlp_params = [
     # modulus length, [s, runs] combinations
     # (for >= 99% success probability)
@@ -582,7 +589,7 @@ def tabulate_ff_dh_short(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in ff_dh_short_dlp_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
       m = 2 * z
 
       # Single run.
@@ -638,7 +645,7 @@ def tabulate_ff_dh_short(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in ff_dh_short_dlp_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
       m = 2 * z
 
       # Single run.
@@ -675,7 +682,7 @@ def tabulate_ff_dh_short(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in ff_dh_short_dlp_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
       m = 2 * z
 
       [s, n] = max(options, key=lambda x: x[0])
@@ -711,7 +718,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in ff_dh_schnorr_dlp_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
       m = 2 * z
 
       # Single run.
@@ -765,7 +772,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in ff_dh_schnorr_dlp_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
       m = 2 * z
 
       # Single run.
@@ -799,7 +806,7 @@ def tabulate_ff_dh_schnorr(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in ff_dh_schnorr_dlp_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
       m = 2 * z
 
       [s, n, sigma] = max(options, key=lambda x: x[0])
@@ -836,7 +843,7 @@ def tabulate_rsa(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in rsa_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
 
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
@@ -895,7 +902,7 @@ def tabulate_rsa(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in rsa_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
 
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
@@ -935,7 +942,7 @@ def tabulate_rsa(csv_prefix):
     csv_writer.writeheader()
 
     for [modulus_length, options] in rsa_params:
-      z = nist_model[modulus_length]
+      z = strength_level_for_modulus_length(modulus_length)
 
       if 0 != modulus_length % 2:
         raise Exception("Error: The modulus length must be even.")
