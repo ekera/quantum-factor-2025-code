@@ -200,13 +200,13 @@ m: 160 sigma: 9 s: 6 n: 7 -- tau: 5.156218 v: 4.74782E+07 <2669>
 m: 160 sigma: 9 s: 6 n: 9 -- tau: 5.547786 v: 0.000781427 <3480>
 m: 160 sigma: 9 s: 6 n: 8 -- tau: 5.355617 v: 171.587 <3012>
 
-# Processing: diagonal-distribution-det-dim-8192-m-160-sigma-10-s-7.txt
+# Processing: diagonal-distribution-det-dim-8192-m-160-sigma-9-s-7.txt
 # Bounds: (eta = <all> (0), delta = 1000000, v = 2)
-# Timestamp: 2025-06-08 23:12:29 CEST
-m: 160 sigma: 10 s: 7 n: 7 -- tau: 4.969492 v: 4.5259E+15 <1331>
-m: 160 sigma: 10 s: 7 n: 8 -- tau: 5.075550 v: 1.28449E+11 <1463>
-m: 160 sigma: 10 s: 7 n: 11 -- tau: 5.403576 v: 0.00790518 <2091>
-m: 160 sigma: 10 s: 7 n: 10 -- tau: 5.323474 v: 214.248 <1848>
+# Timestamp: 2025-10-30 22:43:34 CET
+m: 160 sigma: 9 s: 7 n: 7 -- tau: 5.191173 v: 1.54706E+16 <2666>
+m: 160 sigma: 9 s: 7 n: 8 -- tau: 5.336960 v: 6.55995E+11 <2898>
+m: 160 sigma: 9 s: 7 n: 11 -- tau: 5.821997 v: 0.256654 <4068>
+m: 160 sigma: 9 s: 7 n: 10 -- tau: 5.664783 v: 2891.04 <3753>
 
 # Processing: diagonal-distribution-det-dim-8192-m-160-sigma-10-s-8.txt
 # Bounds: (eta = <all> (0), delta = 1000000, v = 2)
