@@ -22,6 +22,23 @@ def strength_level_for_modulus_length(modulus_length):
   return nist_model[modulus_length];
 
 
+def sigma_for_n(n):
+  if n == 2:
+    return 7
+  if n in range(3, 5 + 1):
+    return 8
+  if n in range(6, 11 + 1):
+    return 9
+  if n in range(12, 22 + 1):
+    return 10
+  if n in range(23, 45 + 1):
+    return 11
+  if n in range(46, 91 + 1):
+    return 12
+
+  raise Exception("Error: Unsupported number of runs n.")
+
+
 ff_dh_short_dlp_params = [
     # modulus length, [s, runs] combinations
     # (for >= 99% success probability)
