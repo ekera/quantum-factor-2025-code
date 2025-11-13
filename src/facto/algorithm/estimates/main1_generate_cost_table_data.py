@@ -79,7 +79,7 @@ def read_buckets(csv_path: str | pathlib.Path) -> dict[int, dict[int, tuple[int,
 
     return buckets
 
-def read_parameterizations(params_csv_path: str | pathlib.Path):
+def read_parameterizations(params_csv_path: str | pathlib.Path) -> list[dict[str, int | float]]:
     parameterizations = []
 
     with open(params_csv_path) as f:

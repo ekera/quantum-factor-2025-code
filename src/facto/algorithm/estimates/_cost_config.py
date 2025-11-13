@@ -85,7 +85,7 @@ class CostConfig:
         return CostConfig(conf=conf, toffolis=toffolis, keep_rate=keep_rate)
 
     @staticmethod
-    def iter_configurations(tup) -> str:
+    def iter_configurations(tup: tuple[dict[str, int | float], int, int]) -> list[dict[str, int | float]]:
         results = []
         seen = set()
 
